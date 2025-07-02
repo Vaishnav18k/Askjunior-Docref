@@ -1,4 +1,9 @@
+
 import type { Metadata } from "next";
+import { StackProvider, StackTheme } from "@stackframe/stack";
+import { stackServerApp } from "../stack";
+import {ConvexClientProvider } from "../app/ConvexClientProvider";
+import { EdgeStoreProvider } from "../app/lib/edgestore";
 import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
 
@@ -26,9 +31,13 @@ export default function RootLayout({
     <html lang="en">
       <body
         className={`${geistSans.variable} ${geistMono.variable} antialiased`}
-      >
+      ><StackProvider app={stackServerApp}><StackTheme>
+          <ConvexClientProvider>
+        <EdgeStoreProvider>
         {children}
-      </body>
+        </EdgeStoreProvider>
+          </ConvexClientProvider>
+      </StackTheme></StackProvider></body>
     </html>
   );
 }
