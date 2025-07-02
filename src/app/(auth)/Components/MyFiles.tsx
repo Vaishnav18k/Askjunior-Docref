@@ -223,7 +223,10 @@ const MyFiles: React.FC = () => {
                         </h4>
                       </div>
                     </div>
-                    <button className=" border border-slate-300 inline-flex items-center justify-center gap-2 whitespace-nowrap text-sm font-medium ring-offset-background transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 [&amp;_svg]:pointer-events-none [&amp;_svg]:size-4 [&amp;_svg]:shrink-0 border border-input bg-background hover:bg-accent hover:text-accent-foreground h-9 rounded-md px-3 ml-4">
+                    <button className=" border border-slate-200 inline-flex items-center justify-center gap-2 whitespace-nowrap text-sm font-medium ring-offset-background transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 [&amp;_svg]:pointer-events-none [&amp;_svg]:size-4 [&amp;_svg]:shrink-0 border border-input bg-white hover:bg-slate-100/70 hover:text-accent-foreground h-9 rounded-md px-3 ml-4"
+                    onClick={() => (window.location.href = `/documents/${doc.id}`)}>
+                                          {/* onClick={() => (window.location.href = `/documents/${doc.id}`)}> */}
+
                       <svg
                         xmlns="http://www.w3.org/2000/svg"
                         width="24"
