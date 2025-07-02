@@ -1,7 +1,16 @@
 "use client";
 import { SignUp, useUser } from "@stackframe/stack";
+// import {useUser } from "@stackframe/stack";
+import { useRouter } from "next/navigation";
 
-export default function CustomSignUpPage() {
+export default function Page() {
+  const currentUser = useUser();
+  const router = useRouter();
+  if (currentUser) {
+    // If the user is already signed in, redirect to the home page
+    router.push("/dashboard");
+    return null; // Prevent rendering the SignUp component
+  }
 
 
   return (
