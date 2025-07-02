@@ -2,7 +2,7 @@
 
 import React from "react";
 import { Upload } from "lucide-react";
-import { api } from "../../../convex/_generated/api";
+import { api } from "../../../../convex/_generated/api";
 import { useQuery } from "convex/react";
 import { useRouter } from "next/navigation";
 import { useUser } from "@stackframe/stack";

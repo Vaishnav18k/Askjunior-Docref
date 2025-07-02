@@ -1,8 +1,8 @@
 'use client'
 import React from 'react';
-import Header from '../components/MainHeader';
-import NavLink from '../components/Nav-links';
-import MainContent from '../components/MainContent';
+import Header from '../Components/MainHeader';
+import NavLink from '../Components/Nav-links';
+import MainContent from '../Components/MainContent';
 export default function Dashboard() {
   return (
     <>

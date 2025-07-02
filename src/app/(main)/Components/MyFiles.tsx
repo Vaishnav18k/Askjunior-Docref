@@ -4,7 +4,7 @@
 
 import React, { useState } from 'react';
 import { FileText, Search, Tag, Eye } from 'lucide-react';
-import { api } from "../../../convex/_generated/api";
+import { api } from "../../../../convex/_generated/api";
 import { useQuery } from "convex/react";
 import { useUser } from "@stackframe/stack";
 

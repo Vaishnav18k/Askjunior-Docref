@@ -1,8 +1,8 @@
 "use client";
 import React from "react";
-import UploadDocumentpage from "../components/UploadDocument";
-import Header from "../components/MainHeader";
-import NavLink from "../components/Nav-links";
+import UploadDocumentpage from "../Components/UploadDocument";
+import Header from "../Components/MainHeader";
+import NavLink from "../Components/Nav-links";
 
 export default function Uploaddocuments() {
   return (

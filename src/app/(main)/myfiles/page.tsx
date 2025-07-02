@@ -1,9 +1,9 @@
 'use client';
 import React from 'react';
 import { Upload, FileText, Search } from 'lucide-react';
-import Header from '../components/MainHeader';
-import NavLink from '../components/Nav-links';
-import MyFiles from '../components/MyFiles';
+import Header from '../Components/MainHeader';
+import NavLink from '../Components/Nav-links';
+import MyFiles from '../Components/MyFiles';
 
 export default function Myfiles() {
   return (

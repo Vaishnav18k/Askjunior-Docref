@@ -1,10 +1,10 @@
 "use client";
 import React, { useRef, useState } from "react";
-import { useEdgeStore } from "../lib/edgestore";
+import { useEdgeStore } from "../../lib/edgestore";
 import { useUser } from "@stackframe/stack";
 import { Upload } from "lucide-react";
 import { useMutation } from "convex/react";
-import { api } from "../../../convex/_generated/api";
+import { api } from "../../../../convex/_generated/api";
 
 const UploadDocumentpage: React.FC = () => {
   const fileInputRef = useRef<HTMLInputElement | null>(null);
