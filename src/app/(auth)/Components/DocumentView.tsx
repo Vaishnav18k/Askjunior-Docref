@@ -193,7 +193,7 @@ export const DocumentView = ({ docId }: { docId: Id<"workspace"> }) => {
             ) : (
               <div className="prose max-w-none">
                 <pre className="whitespace-pre-wrap text-sm text-gray-700 font-sans">
-                  {workspace.workspace_notes || document.doc_notes || 'No notes available.'}
+                  {workspace.workspace_notes || 'No notes available.'}
                 </pre>
               </div>
             )}
