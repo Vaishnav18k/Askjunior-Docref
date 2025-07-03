@@ -3,6 +3,7 @@ import React, { useState } from 'react';
 import { useQuery, useMutation } from 'convex/react';
 import { api } from '../../../../convex/_generated/api';
 import { Id } from '../../../../convex/_generated/dataModel';
+import { useParams } from 'next/navigation';
 
 export const DocumentView = ({ docId }: { docId: Id<"workspace"> }) => {
   const useparams = useQuery(api.workspace.getWorkspace, { id: docId });
@@ -24,7 +25,7 @@ export const DocumentView = ({ docId }: { docId: Id<"workspace"> }) => {
   const handleEditClick = () => {
     setIsEditing(true);
     // Use doc_notes if available, fallback to workspace_notes
-    setNotes(document.doc_notes || workspace.workspace_notes || '');
+    setNotes(    workspace.workspace_notes ||  document.doc_notes|| '');
   };
 
   const handleSaveClick = async () => {
@@ -45,8 +46,8 @@ export const DocumentView = ({ docId }: { docId: Id<"workspace"> }) => {
     setNotes('');
   };
 
-  const fileSizeMB = (document.doc_filesize / (1024 * 1024)).toFixed(2);
-  const uploadDate = new Date(document.doc_uploaded_date).toLocaleString();
+  const fileSizeMB = (workspace.workspace_filesize / (1024 * 1024)).toFixed(2);
+  const uploadDate = new Date(workspace.docuploaded_date).toLocaleString();
 
   return (
     <main className="flex-1 p-6">
@@ -78,9 +79,9 @@ export const DocumentView = ({ docId }: { docId: Id<"workspace"> }) => {
                   <path d="M16 17H8" />
                 </svg>
                 <div>
-                  <h3 className="font-semibold tracking-tight text-xl mb-2">{document.doc_title}</h3>
-                  <p className="text-sm text-muted-foreground space-y-1">
-                    <div>File: {document.doc_title}.{document.doc_filetype}</div>
+                  <h3 className="font-semibold tracking-tight text-xl mb-2">{workspace.workspace_doctitle}</h3>
+                  <div className="text-sm text-muted-foreground space-y-1">
+                    <div>File: {workspace.workspace_doctitle}.{workspace.workspace_filetype}</div>
                     <div>Size: {fileSizeMB} MB</div>
                     <div className="flex items-center">
                       <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="mr-1 h-3 w-3">
@@ -91,7 +92,7 @@ export const DocumentView = ({ docId }: { docId: Id<"workspace"> }) => {
                       </svg>
                       Uploaded {uploadDate}
                     </div>
-                  </p>
+                  </div>
                 </div>
               </div>
             </div>
@@ -100,7 +101,7 @@ export const DocumentView = ({ docId }: { docId: Id<"workspace"> }) => {
             <div className="mb-4">
               <h4 className="text-sm font-medium text-gray-700 mb-2">Tags</h4>
               <div className="flex flex-wrap gap-2">
-                {document.doc_tags?.map((tag: string, index: number) => (
+                {workspace.workspace_doctags?.map((tag: string, index: number) => (
                   <div
                     key={index}
                     className="inline-flex items-center rounded-full border px-2.5 py-0.5 text-xs font-semibold transition-colors focus:outline-none focus:ring-2 focus:ring-ring focus:ring-offset-2 border-transparent bg-secondary text-secondary-foreground hover:bg-secondary/80"
@@ -130,7 +131,7 @@ export const DocumentView = ({ docId }: { docId: Id<"workspace"> }) => {
               </svg>
               <h3 className="text-lg font-medium text-gray-700 mb-2">Preview Not Available</h3>
               <p className="text-gray-500 mb-4">In a full implementation, you would see a preview of your document file here.</p>
-              <p className="text-sm text-gray-400">File: {document.doc_title}.{document.doc_filetype} ({fileSizeMB} MB)</p>
+              <p className="text-sm text-gray-400">File: {workspace.workspace_filetype} ({fileSizeMB} MB)</p>
             </div>
           </div>
         </div>
@@ -192,7 +193,7 @@ export const DocumentView = ({ docId }: { docId: Id<"workspace"> }) => {
             ) : (
               <div className="prose max-w-none">
                 <pre className="whitespace-pre-wrap text-sm text-gray-700 font-sans">
-                  {document.doc_notes || workspace.workspace_notes || 'No notes available.'}
+                  {workspace.workspace_notes || document.doc_notes || 'No notes available.'}
                 </pre>
               </div>
             )}
