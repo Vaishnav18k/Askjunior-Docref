@@ -65,3 +65,47 @@ export const getDocumentStats = query({
     };
   }
 });
+
+
+// new added files below
+
+// Fetch workspace by Convex _id
+export const getWorkspace = query({
+  args: { id: v.id("workspace") },
+  handler: async (ctx, args) => {
+    return await ctx.db.get(args.id);
+  },
+});
+
+// Update notes in workspace and sync with docref table
+export const updateNotes = mutation({
+  args: {
+    id: v.id("workspace"),
+    notes: v.string(),
+  },
+  handler: async (ctx, args) => {
+    // Update workspace table
+    await ctx.db.patch(args.id, { workspace_notes: args.notes });
+
+    // Fetch the workspace to get its workspace_id
+    const workspace = await ctx.db.get(args.id);
+    if (!workspace) {
+      throw new Error("Workspace not found");
+    }
+
+    // Find related docref entries by workspace_id
+    const relatedDocs = await ctx.db
+      .query("docref")
+      .filter(q => q.eq(q.field("workspace_id"), workspace.workspace_id))
+      .collect();
+
+    // Update doc_notes in each related docref entry
+    for (const doc of relatedDocs) {
+      await ctx.db.patch(doc._id, { doc_notes: args.notes });
+    }
+
+    return { success: true };
+  },
+});
+
+

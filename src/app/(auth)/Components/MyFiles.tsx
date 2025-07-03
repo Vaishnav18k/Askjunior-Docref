@@ -5,6 +5,7 @@ import { FileText, Search, Tag, Eye } from "lucide-react";
 import { api } from "../../../../convex/_generated/api";
 import { useQuery } from "convex/react";
 import { useUser } from "@stackframe/stack";
+import Link from "next/link";
 
 const MyFiles: React.FC = () => {
   const user = useUser();
@@ -212,7 +213,7 @@ const MyFiles: React.FC = () => {
                           <span
                             key={tag}
                             className="  px-2 text-xs font-semibold border border-gray-100 rounded-full bg-slate-200/60 text-black "
-                          > 
+                          >
                             {tag}
                           </span>
                         ))}
@@ -223,28 +224,27 @@ const MyFiles: React.FC = () => {
                         </h4>
                       </div>
                     </div>
-                    <button className=" border border-slate-200 inline-flex items-center justify-center gap-2 whitespace-nowrap text-sm font-medium ring-offset-background transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 [&amp;_svg]:pointer-events-none [&amp;_svg]:size-4 [&amp;_svg]:shrink-0 border border-input bg-white hover:bg-slate-100/70 hover:text-accent-foreground h-9 rounded-md px-3 ml-4"
-                    onClick={() => (window.location.href = `/documents/${doc.id}`)}>
-                                          {/* onClick={() => (window.location.href = `/documents/${doc.id}`)}> */}
-
-                      <svg
-                        xmlns="http://www.w3.org/2000/svg"
-                        width="24"
-                        height="24"
-                        viewBox="0 0 24 24"
-                        fill="none"
-                        stroke="currentColor"
-                        strokeWidth="2"
-                        strokeLinecap="round"
-                        strokeLinejoin="round"
-                        className="lucide lucide-eye mr-2 h-4 w-4"
-                        
-                      >
-                        <path d="M2.062 12.348a1 1 0 0 1 0-.696 10.75 10.75 0 0 1 19.876 0 1 1 0 0 1 0 .696 10.75 10.75 0 0 1-19.876 0"></path>
-                        <circle cx="12" cy="12" r="3"></circle>
-                      </svg>
-                      View
-                    </button>
+                    <Link href={`documents/${doc._id}`}>
+                      <button className=" border border-slate-200 inline-flex items-center justify-center gap-2 whitespace-nowrap text-sm font-medium ring-offset-background transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 [&amp;_svg]:pointer-events-none [&amp;_svg]:size-4 [&amp;_svg]:shrink-0 border border-input bg-white hover:bg-slate-100/70 hover:text-accent-foreground h-9 rounded-md px-3 ml-4">
+                        {/* onClick={() => (window.location.href = `/documents/${doc.id}`)}> */}
+                        <svg
+                          xmlns="http://www.w3.org/2000/svg"
+                          width="24"
+                          height="24"
+                          viewBox="0 0 24 24"
+                          fill="none"
+                          stroke="currentColor"
+                          strokeWidth="2"
+                          strokeLinecap="round"
+                          strokeLinejoin="round"
+                          className="lucide lucide-eye mr-2 h-4 w-4"
+                        >
+                          <path d="M2.062 12.348a1 1 0 0 1 0-.696 10.75 10.75 0 0 1 19.876 0 1 1 0 0 1 0 .696 10.75 10.75 0 0 1-19.876 0"></path>
+                          <circle cx="12" cy="12" r="3"></circle>
+                        </svg>
+                        View
+                      </button>
+                    </Link>
                   </div>
                 </div>
               ))}
