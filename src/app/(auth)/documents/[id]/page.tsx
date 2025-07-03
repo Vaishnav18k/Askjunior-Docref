@@ -1,7 +1,7 @@
 'use client'
 import React from 'react'
 import Header from '../../Components/MainHeader'
-import NavLink from '../../Components/Nav-links'
+import NavLink from '../../Nav-links'
 import { useParams } from 'next/navigation';
 import {DocumentView }from '../../../(auth)/Components/DocumentView';
 import { Id } from '../../../../../convex/_generated/dataModel';

@@ -1,7 +1,8 @@
-import React from 'react';
+'use client';
+
+import React, { useEffect } from 'react';
 import Link from 'next/link';
 import { useUser, useStackApp, UserButton } from "@stackframe/stack";
-import { useEffect } from 'react';
 import { useRouter } from 'next/navigation';
 
 const Header = () => {
@@ -10,14 +11,14 @@ const Header = () => {
   const router = useRouter();
 
   useEffect(() => {
-    if (user === null) {
+    if (user === null || user === undefined) {
       router.push('/signin');
     }
   }, [user, router]);
 
-  // Show nothing or a spinner while user state is loading
-  if (user === undefined) {
-    router.push('/signin');
+  // Show nothing while checking auth state
+  if (!user) {
+    return null;
   }
   return (
     <header className="bg-white shadow-sm border-b border-gray-200  ">
